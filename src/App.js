@@ -16,6 +16,21 @@ function App() {
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState([]);
 
+  /* ---------- search logic ---------- */
+  const search = (e) => {
+    if (e.key === "Enter") {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
+      )
+        .then((res) => res.json())
+        .then((result) => {
+          setWeather(result);
+          console.log(result);
+        });
+      setLocation("");
+    }
+  };
+
   return (
     <Container>
       <Main>
